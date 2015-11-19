@@ -16,11 +16,17 @@ public void draw()
 void keyPressed()
 {
   if (keyPressed == true && key == r)
-    rotate(-10);
+    space.rotate(-10); //up
   if(keyPressed == true && key == f)
-    rotate(10);
-  //finish
-
+    space.rotate(10); //down
+  if(keyPressed == true && key == d)
+    space.rotate(30); //left
+  if(keyPressed == true && key == g)
+    space.rotate(-30); //right
+  if (keyPressed == true && key == a)
+    space.accelerate();
+  if keyPressed == true && key == h)
+    space.hyperspace();
 
 }
 
@@ -39,7 +45,7 @@ public double getDirectionY(){return myDirectionY;}
 public void setPointDirection(int degrees){myPointDirection = degrees;}
 public double getPointDirection(){return myPointDirection;}
 
-  Spaceship()
+ public Spaceship()
   {
   corners = 4;
   xCorners = new int[corners];
@@ -58,6 +64,15 @@ public double getPointDirection(){return myPointDirection;}
    myDirectionX = 0;
    myDirectionY = 0;
    myPointDirection = 0;
+
+  }
+ public void hyperspace()
+  {
+
+    myCenterX = (Math.random()*500);
+    myCenterY = (Math.random()*500);
+    myPointDirection = (Math.random()*360);
+
 
   }
 }
