@@ -1,16 +1,86 @@
-//your variable declarations here
+Spaceship space;//your variable declarations here
 public void setup() 
 {
-  //your code here
+
+size(500,500);
+space= new Spaceship();
+
 }
 public void draw() 
 {
-  //your code here
+
+  space.show();
+    
 }
-class SpaceShip //extends Floater  
+
+public void keyPressed()
+{
+  if(keyPressed == true && key == 'r')
+    space.rotate(-30); //up
+    background(127);
+  if(keyPressed == true && key == 'f')
+    space.rotate(30); //down
+   background(127);
+  if(keyPressed == true && key == 'd')
+    space.rotate(-10); //left
+    background(127);
+  if(keyPressed == true && key == 'g')
+    space.rotate(10); //right
+    background(127);
+ /* if (keyPressed == true && key == 'a')
+    space.accelerate();*/ //fix this 
+  if (keyPressed == true && key == 'h')
+    space.hyperspace();
+
+}
+
+
+class Spaceship extends Floater  
 {   
-    //your code here
+
+public void setX(int x){myCenterX = x;}
+public int getX(){return (int)myCenterX;}
+public void setY(int y){myCenterY = y;}
+public int getY(){return (int)myCenterY;}
+public void setDirectionX(double x){myDirectionX = x;}
+public double getDirectionX(){return myDirectionX;}
+public void setDirectionY(double y){myDirectionY = y;}
+public double getDirectionY(){return myDirectionY;}
+public void setPointDirection(int degrees){myPointDirection = degrees;}
+public double getPointDirection(){return myPointDirection;}
+
+ public Spaceship()
+  {
+  corners = 4;
+  xCorners = new int[corners];
+  yCorners = new int[corners];
+  xCorners[0] = -8;
+  yCorners[0] = -8;
+  xCorners[1] = 16;
+  yCorners[1] = 0;
+  xCorners[2] = -8;
+  yCorners[2] = 8;
+  xCorners[3] = -2;
+  yCorners[3] = 0;
+   myColor = color(255,0,0);
+   myCenterX = 250;
+   myCenterY = 250;
+   myDirectionX = 0;
+   myDirectionY = 0;
+   myPointDirection = 0;
+
+  }
+ public void hyperspace()
+  {
+    background(127);
+    myCenterX = (Math.random()*500);
+    myCenterY = (Math.random()*500);
+    myPointDirection = (Math.random()*360);
+
+
+  }
 }
+
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
 {   
   protected int corners;  //the number of corners, a triangular floater has 3   
@@ -87,4 +157,3 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
     endShape(CLOSE);  
   }   
 } 
-
