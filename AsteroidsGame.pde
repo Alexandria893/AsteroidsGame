@@ -7,7 +7,7 @@ public void setup()
 size(500,500);
 space= new Spaceship();
 star = new Stars [300];
-  for(int i = 0; i < star.length;i+=5)
+  for(int i = 0; i < star.length;i++)
   {
     star[i] = new Stars(250,250);
   }
@@ -15,12 +15,15 @@ star = new Stars [300];
 }
 public void draw()
 {
-  background(127);
- /* for (int i=0; i<star.length; i++) 
-    {   
-      //star[i].move();
-      star[i].show();
-    }*/
+  background(0);
+ for (int i=0; i<star.length; i++) 
+  {  
+  
+  star[i].move();  
+  star[i].show();
+  
+  }
+  
   space.move();
   space.show();
 
@@ -37,9 +40,9 @@ public void keyPressed()
     space.rotate(-10); //left
   if(keyPressed == true && key == 'g')
     space.rotate(10); //right
-  if (keyPressed == true && key == 'a')
+  if (keyPressed == true && key == 'o')
     space.accelerate(.3);  
-  if (keyPressed == true && key == 't')
+  if (keyPressed == true && key == 'p')
     space.deccelerate(.6);  
   if (keyPressed == true && key == 'h')
     space.hyperspace();
@@ -84,7 +87,7 @@ public double getPointDirection(){return myPointDirection;}
   }
  public void hyperspace()
   {
-    background(127);
+    background(255);
     myCenterX = (Math.random()*500);
     myCenterY = (Math.random()*500);
     myPointDirection = (Math.random()*360);
@@ -94,22 +97,37 @@ public double getPointDirection(){return myPointDirection;}
 }
 class Stars
 {     
-  int myX;
-  int myY;
-   Stars(int x, int y)
+  private int myX;
+  private int myY;
+  public Stars(int x, int y)
    {
     myX=x;
     myY=y;
-    //move();
    }
   //make a random walk for this
-  void move()
+  public void move()
    {
-    myX = myX + (int)(Math.random()*3)-1;
-    myY = myY + (int)(Math.random()*3)-1;
+    myX = myX + (int)(Math.random()*50)-1;
+    myY = myY + (int)(Math.random()*50)-1;
+    if(myX >width)
+    {
+      myX = 0;
+    }
+    else if (myX<0)
+    {
+      myX = width;
+    }
+    if(myY >height)
+    {
+      myY = 0;
+    }
+    else if (myY < 0)
+    {
+      myY = height;
+    }
    }
    
-  void show()
+  public void show()
   {  
     stroke(0,57,247);
     fill(0,255,255);
