@@ -32,19 +32,19 @@ public void draw()
 
 public void keyPressed()
 {
-  if(keyPressed == true && key == 'r')
+  if( key == 'r')
     space.rotate(-30); //up
-  if(keyPressed == true && key == 'f')
+  if(key == 'f')
     space.rotate(30); //down
-  if(keyPressed == true && key == 'd')
+  if( key == 'd')
     space.rotate(-10); //left
-  if(keyPressed == true && key == 'g')
+  if( key == 'g')
     space.rotate(10); //right
-  if (keyPressed == true && key == 'o')
+  if ( key == 'o')
     space.accelerate(.3);  
-  if (keyPressed == true && key == 'p')
+  if (key == 'p')
     space.deccelerate(.6);  
-  if (keyPressed == true && key == 'h')
+  if ( key == 'h')
     space.hyperspace();
 
 }
