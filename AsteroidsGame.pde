@@ -1,4 +1,5 @@
 Spaceship space;//your variable declarations here
+Asteroids a;
 Stars [] star;
 
 public void setup()
@@ -6,6 +7,7 @@ public void setup()
 
 size(500,500);
 space= new Spaceship();
+a = new Asteroids();
 star = new Stars [300];
   for(int i = 0; i < star.length;i++)
   {
@@ -77,20 +79,71 @@ public double getPointDirection(){return myPointDirection;}
   yCorners[2] = 8;
   xCorners[3] = -2;
   yCorners[3] = 0;
-   myColor = color(255,0,0);
-   myCenterX = 250;
-   myCenterY = 250;
-   myDirectionX = 0;
-   myDirectionY = 0;
-   myPointDirection = 0;
+  myColor = color(255,0,0);
+  myCenterX = 250;
+  myCenterY = 250;
+  myDirectionX = 0;
+  myDirectionY = 0;
+  myPointDirection = 0;
 
   }
+
+class Asteroids extends Floater
+{
+public void setX(int x){myCenterX = x;}
+public int getX(){return (int)myCenterX;}
+public void setY(int y){myCenterY = y;}
+public int getY(){return (int)myCenterY;}
+public void setDirectionX(double x){myDirectionX = x;}
+public double getDirectionX(){return myDirectionX;}
+public void setDirectionY(double y){myDirectionY = y;}
+public double getDirectionY(){return myDirectionY;}
+public void setPointDirection(int degrees){myPointDirection = degrees;}
+public double getPointDirection(){return myPointDirection;}
+private int spr;
+
+public Asteroids()
+{
+corners = 6;
+xCorners = new int[corners];
+yCorners = new int[corners];
+xCorners[0] = -5;
+yCorners[0] = -5;
+xCorners[1] = 16;
+yCorners[1] = 0;
+xCorners[2] = -7;
+yCorners[2] = 7;
+xCorners[3] = -2;
+yCorners[3] = 2;
+myColor = color(aqua);
+myCenterX = 250;
+myCenterY = 250;
+myDirectionX = (Math.random()*2)-2;
+myDirectionY = (Math.random()*2)-2;
+myPointDirection = 0;
+spr = (Math.random()*2)-2;
+}
+
+public void move()
+{
+  rotate(spr);
+  Super.move();
+}
+
+public void show()
+{
+
+//finish
+
+}
  public void hyperspace()
   {
     background(255);
     myCenterX = (Math.random()*500);
     myCenterY = (Math.random()*500);
     myPointDirection = (Math.random()*360);
+    myDirectionX = 0;
+    myDirectionY = 0;
 
 
   }
