@@ -9,7 +9,6 @@ public void setup()
   space= new Spaceship();
 
   star = new Stars [300];
-
   for (int i = 0; i < star.length; i++)
   {
     star[i] = new Stars(250, 250);
@@ -20,15 +19,16 @@ public void setup()
     a.add(new Asteroids());
 
   }
-}
+  }  
+
 
 public void draw()
 {
   background(0);
-  for (int i=0; i<star.length; i++)
-  {
+  for (int i=0; i<star.length; i++) 
+  {  
 
-    star[i].move();
+    star[i].move();  
     star[i].show();
   }
 
@@ -48,7 +48,7 @@ public void draw()
 
   space.move();
   space.show();
-
+ 
 }
 
 public void keyPressed()
@@ -65,6 +65,9 @@ public void keyPressed()
     space.accelerate(.3);
   if (key == 'p')
     space.deccelerate(.6);
+    space.accelerate(.3);  
+  if (key == 'p')
+    space.deccelerate(.6);  
   if ( key == 'h')
     space.hyperspace();
 }
@@ -202,7 +205,7 @@ class Asteroids extends Floater
   }
 }
 class Stars
-{
+{     
   private int myX;
   private int myY;
   public Stars(int x, int y)
@@ -238,6 +241,7 @@ class Stars
     ellipse(myX, myY, random(10), random(10));
   }
 }
+  
 abstract class Floater //Do NOT modify the Floater class! Make changes
 {
   protected int corners;  //the number of corners, a triangular floater has 3
@@ -325,3 +329,4 @@ abstract class Floater //Do NOT modify the Floater class! Make changes
     endShape(CLOSE);
   }
 }
+
