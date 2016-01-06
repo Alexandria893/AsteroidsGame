@@ -241,7 +241,7 @@ class Asteroids extends Floater
     myDirectionX = (Math.random()*2)-2;
     myDirectionY = (Math.random()*2)-2;
     myPointDirection = 0;
-    spr = (int)(Math.random()*2)-2;
+    spr = (int)(Math.random()*2-2);
   }
 
   public void move()
