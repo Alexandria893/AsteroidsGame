@@ -26,7 +26,7 @@ public void draw()
   background(0);
   for (int i=0; i<star.length; i++)
   {
-    star[i].move();
+    star[i].walk();
     star[i].show();
   }
 
@@ -262,7 +262,7 @@ class Stars
     myY=y;
   }
   //make a random walk for this
-  public void move()
+  public void walk()
   {
     myX = myX + (int)(Math.random()*50)-1;
     myY = myY + (int)(Math.random()*50)-1;
