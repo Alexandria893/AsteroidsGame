@@ -54,13 +54,14 @@ b.get(k).getY()) <25)
     b.get(i).move();
     b.get(i).show();
   }
+   if(key == 'i')
+    {
+      b.add(new Bullet(space));
+    }
 
   space.move();
   space.show();
-  if(key == 'i')
-  {
-    b.add(new Bullet(space));
-  }
+ 
 }
 
 
@@ -114,7 +115,8 @@ public void keyPressed()
   if (key == 'p')
     space.deccelerate(.2);
   if ( key == 'h')
-  {space.hyperspace();
+  {
+  space.hyperspace();
   a.add(new Asteroids());
   }
 }
@@ -241,7 +243,7 @@ class Asteroids extends Floater
     myDirectionX = (Math.random()*2)-2;
     myDirectionY = (Math.random()*2)-2;
     myPointDirection = 0;
-    spr = (int)(Math.random()*2-2);
+    spr = (int)(Math.random()*2)-2;
   }
 
   public void move()
