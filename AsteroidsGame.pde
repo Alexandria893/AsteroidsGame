@@ -1,14 +1,15 @@
-Spaceship space;//your variable declarations here
-ArrayList <Asteroids> a = new ArrayList <Asteroids>(10);
+//your variable declarations here
+Spaceship space;
+ArrayList <Bullet> b = new ArrayList <Bullet>();
+ArrayList <Asteroids> a = new ArrayList <Asteroids>(30);
 Stars [] star;
 
 public void setup()
 {
-
   size(500, 500);
   space= new Spaceship();
-
   star = new Stars [300];
+
   for (int i = 0; i < star.length; i++)
   {
     star[i] = new Stars(250, 250);
@@ -17,65 +18,110 @@ public void setup()
   for(int i =0; i<10; i++)
   {
     a.add(new Asteroids());
-
   }
-  }  
-
+}
 
 public void draw()
 {
   background(0);
-  for (int i=0; i<star.length; i++) 
-  {  
-
-    star[i].move();  
+  for (int i=0; i<star.length; i++)
+  {
+    star[i].move();
     star[i].show();
   }
 
   for(int i=1; i<a.size(); i++)
   {
-
     a.get(i).move();
     a.get(i).show();
     if (dist(a.get(i).getX(),a.get(i).getY(),space.getX(),space.getY()) <20)
     {
-
       a.remove(i);
-
     }
-
+    for(int k=1; k<b.size(); k++)
+    {
+      if (dist(a.get(i).getX(),a.get(i).getY(), b.get(k).getX(),
+b.get(k).getY()) <25)
+      {
+        a.remove(i);
+        b.remove(k);
+        break;
+      }
+    }
+  }
+  for(int i=1; i<b.size();i++)
+  {
+    b.get(i).move();
+    b.get(i).show();
   }
 
   space.move();
   space.show();
- 
+  if(key == 'i')
+  {
+    b.add(new Bullet(space));
+  }
+}
+
+
+class Bullet extends Floater
+{
+  public Bullet(Spaceship space)
+  {
+    myCenterX = space.getX();
+    myCenterY = space.getY();
+    myPointDirection = space.getPointDirection();
+    double dRadians =myPointDirection*(Math.PI/180);
+    myDirectionX = 5 * Math.cos(dRadians) + (space.getDirectionX());
+    myDirectionY = 5 * Math.sin(dRadians) + (space.getDirectionY());
+  }
+public void setX(int x) {myCenterX = x;}
+public int getX() {return (int)myCenterX;}
+public void setY(int y) {myCenterY = y;}
+public int getY() {return (int)myCenterY;}
+public void setDirectionX(double x) {myDirectionX = x;}
+public double getDirectionX() {return myDirectionX;}
+public void setDirectionY(double y) {myDirectionY = y;}
+public double getDirectionY() {return myDirectionY;}
+public void setPointDirection(int degrees) {myPointDirection = degrees;}
+public double getPointDirection() {return myPointDirection;}
+
+public void show()
+  {
+    fill(255,0,0);
+    ellipse((float)myCenterX,(float)myCenterY,5,5);
+  }
+
+  public void move()
+  {
+    myCenterX += myDirectionX;
+    myCenterY += myDirectionY;
+  }
 }
 
 public void keyPressed()
 {
   if ( key == 'r')
-    space.rotate(-30); //up
+    space.rotate(-10); //up
   if (key == 'f')
-    space.rotate(30); //down
+    space.rotate(10); //down
   if ( key == 'd')
-    space.rotate(-10); //left
+    space.rotate(-5); //left
   if ( key == 'g')
-    space.rotate(10); //right
+    space.rotate(5); //right
   if ( key == 'o')
     space.accelerate(.3);
   if (key == 'p')
-    space.deccelerate(.6);
-    space.accelerate(.3);  
-  if (key == 'p')
-    space.deccelerate(.6);  
+    space.deccelerate(.2);
   if ( key == 'h')
-    space.hyperspace();
+  {space.hyperspace();
+  a.add(new Asteroids());
+  }
 }
 
 
 class Spaceship extends Floater
 {
-
   public void setX(int x) {
     myCenterX = x;
   }
@@ -137,8 +183,8 @@ class Spaceship extends Floater
     myDirectionY = 0;
   }
 }
-class Asteroids extends Floater
 
+class Asteroids extends Floater
 {
   public void setX(int x) {
     myCenterX = x;
@@ -205,7 +251,7 @@ class Asteroids extends Floater
   }
 }
 class Stars
-{     
+{
   private int myX;
   private int myY;
   public Stars(int x, int y)
@@ -241,7 +287,7 @@ class Stars
     ellipse(myX, myY, random(10), random(10));
   }
 }
-  
+
 abstract class Floater //Do NOT modify the Floater class! Make changes
 {
   protected int corners;  //the number of corners, a triangular floater has 3
@@ -329,4 +375,3 @@ abstract class Floater //Do NOT modify the Floater class! Make changes
     endShape(CLOSE);
   }
 }
-
